@@ -119,7 +119,8 @@ All code review comments should be specific, constructive, and actionable.
 - Prepare [a release note](https://github.com/Project-MONAI/MONAI/releases)
 - Checkout a new branch `releasing-version-N`
 - Create a tag, for example `git tag -a 0.1a -m "version 0.1a"`
-- [Generate distribution archives](https://packaging.python.org/tutorials/packaging-projects/) `python3 setup.py sdist bdist_wheel`
+- [Generate distribution archives](https://packaging.python.org/tutorials/packaging-projects/)
+`python3 setup.py sdist bdist_wheel`
 - Test the package locally `pip install monai`
 - Upload the package to [PyPI](https://pypi.org/project/monai/)
 - Publish the release note
