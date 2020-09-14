@@ -95,6 +95,11 @@ function print_usage {
     exit 1
 }
 
+function check_python_version {
+    echo "PYTHON: $(which python)"
+    ${cmdPrefix}python monai/utils/pyversion.py
+}
+
 function print_version {
     ${cmdPrefix}python -c 'import monai; monai.config.print_config()'
 }
@@ -249,10 +254,6 @@ done
 homedir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$homedir"
 
-# python path
-export PYTHONPATH="$homedir:$PYTHONPATH"
-echo "$PYTHONPATH"
-
 # by default do nothing
 cmdPrefix=""
 
@@ -263,7 +264,14 @@ then
     # commands are echoed instead of ran
     cmdPrefix="dryrun "
     function dryrun { echo "    " "$@"; }
+else
+    check_python_version
 fi
+
+# python path
+export PYTHONPATH="$homedir:$PYTHONPATH"
+echo "PYTHONPATH: $PYTHONPATH"
+
 
 if [ $doCleanup = true ]
 then

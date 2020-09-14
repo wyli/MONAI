@@ -14,6 +14,7 @@ import sys
 
 from ._version import get_versions
 from .utils.module import load_submodules
+from .utils.pyversion import py_version_ok
 
 __version__ = get_versions()["version"]
 del get_versions
@@ -21,6 +22,9 @@ del get_versions
 __copyright__ = "(c) 2020 MONAI Consortium"
 
 __basedir__ = os.path.dirname(__file__)
+
+if not py_version_ok():
+    raise RuntimeError
 
 # handlers_* have some external decorators the users may not have installed
 # *.so files and folder "_C" may not exist when the cpp extensions are not compiled
