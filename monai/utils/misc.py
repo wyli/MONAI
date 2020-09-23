@@ -171,9 +171,9 @@ def progress_bar(index: int, count: int, desc: Optional[str] = None, bar_len: in
     filled_len = int(bar_len * index // count)
     bar = f"{desc} " if desc is not None else ""
     bar += "[" + "=" * filled_len + " " * (bar_len - filled_len) + "]"
-    print(f"{index}/{count} {bar}", end=end)
+    print(f"{index}/{count} {bar}", end=end, flush=True)
     if index == count:
-        print("")
+        print("", flush=True)
 
 
 def get_seed() -> Optional[int]:
